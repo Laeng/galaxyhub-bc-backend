@@ -1,9 +1,14 @@
 import { Cyan } from "@coralblack/cyan/dist/core";
 import { AppServer } from "./Server";
+import { config } from "dotenv";
+
+config({
+    path: '.env'
+});
 
 const app = new Cyan({
     name: "galaxyhub-bc",
-    port: 9090,
+    port: parseInt(process.env.PORT || "3000", 10),
     server: AppServer,
     routes: [],
     tasks: [],
