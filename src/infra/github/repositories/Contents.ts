@@ -2,7 +2,7 @@ import {Authorization} from "../Authorization";
 import {HttpHelper} from "@coralblack/cyan/dist/helper";
 import {HttpRequestResponse} from "@coralblack/cyan/src/helper/Http.helper";
 
-interface GetContentResponse {
+interface GitHubContentResponse {
     type: string,
     encoding: string,
     size: number,
@@ -40,8 +40,8 @@ export class Contents {
         this.http = new HttpHelper();
     }
 
-    public getContent({owner, repo, path}: GetContentParameter): Promise<HttpRequestResponse<GetContentResponse>> {
-        return this.http.get<GetContentResponse>({
+    public async getContent({owner, repo, path}: GetContentParameter): Promise<GitHubContentResponse> {
+        const response = await this.http.get<GitHubContentResponse>({
             url: `${this.baseUrl}/repos/${owner}/${repo}/contents/${path}`,
             headers: {
                 Accept: 'application/vnd.github+json',
@@ -50,5 +50,11 @@ export class Contents {
             },
             responseType: 'json'
         });
+
+        if (response.status !== 200) {
+            throw new Error(`${response.statusText} - ${path}`);
+        }
+
+        return response.body;
     }
 }
