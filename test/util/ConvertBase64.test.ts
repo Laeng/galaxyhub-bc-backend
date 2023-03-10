@@ -1,4 +1,4 @@
-import {ConvertBase64} from "../../src/helper/ConvertBase64";
+import {ConvertBase64} from "../../src/util/ConvertBase64";
 
 test('Base64를 텍스트로 변환하기', () => {
     const base64: string = 'aGVsbG8gd29ybGQ';

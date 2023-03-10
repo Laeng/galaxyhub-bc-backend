@@ -1,5 +1,5 @@
 import {Contents as GitHubContents, GitHubContentResponse} from '../infra/github'
-import {ConvertBase64} from "../helper/ConvertBase64";
+import {ConvertBase64} from "../util/ConvertBase64";
 
 export class GitHubContentRepository {
     private readonly githubToken = process.env.GITHUB_TOKEN || '';
