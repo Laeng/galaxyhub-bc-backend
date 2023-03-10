@@ -17,9 +17,12 @@
     "@coralblack/cyan": "latest",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
-    "redis": "^4.6.5"
+    "ioredis": "^4.28.5",
+    "node-ts-cache": "^4.4.0",
+    "node-ts-cache-storage-ioredis": "^4.4.0"
   },
   "devDependencies": {
+    "@types/ioredis": "^5.0.0",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.14.6",
     "eslint": "^8.35.0",

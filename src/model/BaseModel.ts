@@ -1,3 +1,3 @@
-import {Model} from "@coralblack/cyan/dist/model";
+import { Model } from "@coralblack/cyan/dist/model";
 
 export class BaseModel extends Model {}

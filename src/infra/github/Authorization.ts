@@ -1,17 +1,15 @@
-import { env } from 'process';
-
 export class Authorization {
-    private readonly token: string;
+  private readonly token: string;
 
-    constructor(token: string) {
-        this.token = token;
-    }
+  constructor(token: string) {
+    this.token = token;
+  }
 
-    public getBaseUrl(): string {
-        return 'https://api.github.com';
-    }
+  public getBaseUrl(): string {
+    return "https://api.github.com";
+  }
 
-    public getToken(): string {
-        return this.token;
-    }
+  public getToken(): string {
+    return this.token;
+  }
 }
