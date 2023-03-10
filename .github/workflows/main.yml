@@ -1,10 +1,7 @@
 name: Deploy backend
 on:
   push:
-    branches:
-      - 'main'
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:
@@ -48,4 +45,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           timeout: "2m"
-          script: sh ~/deploy/galaxyhub-bc-after.sh
+          script: |
+            # sh ~/deploy/galaxyhub-bc-after.sh
+            cd ~/www/api.barcitizen.kr
+            npm install
+            pm2 start npm --name "galaxyhub-bc" -- run start
