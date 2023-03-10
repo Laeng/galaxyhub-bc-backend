@@ -16,18 +16,18 @@ jobs:
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1.3
         with:
-          PORT: ${{ secrets.ENV_PORT }}
-          CYAN_DB_HOST: ${{ secrets.ENV_CYAN_DB_HOST }}
-          CYAN_DB_PORT: ${{ secrets.CYAN_DB_PORT }}
-          CYAN_DB_USERNAME: ${{ secrets.ENV_CYAN_DB_USERNAME }}
-          CYAN_DB_PASSWORD: ${{ secrets.ENV_CYAN_DB_PASSWORD }}
-          CYAN_DB_DATABASE: ${{ secrets.ENV_CYAN_DB_DATABASE }}
-          CYAN_DB_CHARSET: ${{ secrets.ENV_CYAN_DB_CHARSET }}
-          REDIS_HOST: ${{ secrets.ENV_REDIS_HOST }}
-          REDIS_PORT: ${{ secrets.ENV_REDIS_PORT }}
-          GITHUB_TOKEN: ${{ secrets.ENV_GITHUB_TOKEN }}
-          GITHUB_OWNER: ${{ secrets.ENV_GITHUB_OWNER }}
-          GITHUB_REPO: ${{ secrets.ENV_GITHUB_REPO }}
+          envkey_PORT: ${{ secrets.ENV_PORT }}
+          envkey_CYAN_DB_HOST: ${{ secrets.ENV_CYAN_DB_HOST }}
+          envkey_CYAN_DB_PORT: ${{ secrets.ENV_CYAN_DB_PORT }}
+          envkey_CYAN_DB_USERNAME: ${{ secrets.ENV_CYAN_DB_USERNAME }}
+          envkey_CYAN_DB_PASSWORD: ${{ secrets.ENV_CYAN_DB_PASSWORD }}
+          envkey_CYAN_DB_DATABASE: ${{ secrets.ENV_CYAN_DB_DATABASE }}
+          envkey_CYAN_DB_CHARSET: ${{ secrets.ENV_CYAN_DB_CHARSET }}
+          envkey_REDIS_HOST: ${{ secrets.ENV_REDIS_HOST }}
+          envkey_REDIS_PORT: ${{ secrets.ENV_REDIS_PORT }}
+          envkey_GITHUB_TOKEN: ${{ secrets.ENV_GITHUB_TOKEN }}
+          envkey_GITHUB_OWNER: ${{ secrets.ENV_GITHUB_OWNER }}
+          envkey_GITHUB_REPO: ${{ secrets.ENV_GITHUB_REPO }}
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
         env:
