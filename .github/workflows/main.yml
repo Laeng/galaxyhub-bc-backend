@@ -1,0 +1,50 @@
+name: Deploy backend
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          PORT: ${{ secrets.ENV_PORT }}
+          CYAN_DB_HOST: ${{ secrets.ENV_CYAN_DB_HOST }}
+          CYAN_DB_PORT: ${{ secrets.CYAN_DB_PORT }}
+          CYAN_DB_USERNAME: ${{ secrets.ENV_CYAN_DB_USERNAME }}
+          CYAN_DB_PASSWORD: ${{ secrets.ENV_CYAN_DB_PASSWORD }}
+          CYAN_DB_DATABASE: ${{ secrets.ENV_CYAN_DB_DATABASE }}
+          CYAN_DB_CHARSET: ${{ secrets.ENV_CYAN_DB_CHARSET }}
+          REDIS_HOST: ${{ secrets.ENV_REDIS_HOST }}
+          REDIS_PORT: ${{ secrets.ENV_REDIS_PORT }}
+          GITHUB_TOKEN: ${{ secrets.ENV_GITHUB_TOKEN }}
+          GITHUB_OWNER: ${{ secrets.ENV_GITHUB_OWNER }}
+          GITHUB_REPO: ${{ secrets.ENV_GITHUB_REPO }}
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: ""
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          EXCLUDE: ""
+          SCRIPT_BEFORE: |
+            sh ~/deploy/galaxyhub-bc-before.sh
+      - name: Start application
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.REMOTE_PORT }}
+          script: sh ~/deploy/galaxyhub-bc-after.sh
