@@ -3,9 +3,8 @@ import { env } from 'process';
 export class Authorization {
     private readonly token: string;
 
-    constructor() {
-        this.token = process.env.GITHUB_TOKEN || '';
-        console.log(this.token);
+    constructor(token: string) {
+        this.token = token;
     }
 
     public getBaseUrl(): string {

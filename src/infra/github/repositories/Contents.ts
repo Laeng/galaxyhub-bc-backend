@@ -1,39 +1,13 @@
 import {Authorization} from "../Authorization";
 import {HttpHelper} from "@coralblack/cyan/dist/helper";
-import {HttpRequestResponse} from "@coralblack/cyan/src/helper/Http.helper";
-
-interface GitHubContentResponse {
-    type: string,
-    encoding: string,
-    size: number,
-    name: string,
-    path: string,
-    content: string,
-    sha: string,
-    url: string,
-    git_url: string,
-    html_url: string,
-    download_url: string,
-    "_links": {
-        "git": string,
-        "self": string,
-        "html": string
-    }
-}
-
-interface GetContentParameter {
-    owner: string,
-    repo: string,
-    path: string
-}
 
 export class Contents {
     private readonly baseUrl: string;
     private readonly token: string;
     private readonly http: HttpHelper;
 
-    constructor() {
-        const authorization = new Authorization();
+    constructor(apiKey: string) {
+        const authorization = new Authorization(apiKey);
 
         this.baseUrl = authorization.getBaseUrl();
         this.token = authorization.getToken();
@@ -57,4 +31,29 @@ export class Contents {
 
         return response.body;
     }
+}
+
+export interface GitHubContentResponse {
+    type: string,
+    encoding: string,
+    size: number,
+    name: string,
+    path: string,
+    content: string,
+    sha: string,
+    url: string,
+    git_url: string,
+    html_url: string,
+    download_url: string,
+    "_links": {
+        "git": string,
+        "self": string,
+        "html": string
+    }
+}
+
+interface GetContentParameter {
+    owner: string,
+    repo: string,
+    path: string
 }
