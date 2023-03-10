@@ -7,7 +7,4 @@ Galaxyhub BC 프로젝트는 바 시티즌 코리아의 웹사이트로 국내�
 - GitHub Repository 연동기능
 
 ## 기술 스택
-<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/> 
-<img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white"/>
-<img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/redis-dc382d?style=for-the-badge&logo=redis&logoColor=white"> 
+<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white"/> <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=node.js&logoColor=white"/> <img src="https://img.shields.io/badge/redis-dc382d?style=for-the-badge&logo=redis&logoColor=white"> 
