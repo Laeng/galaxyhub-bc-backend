@@ -1,5 +1,7 @@
 import { Inject } from "@coralblack/cyan/dist/core";
 import { FaqData, GitHubContentRepository, InfoData, Sponsors } from "../repository/GitHubContentRepository";
+import {Cache} from "node-ts-cache";
+import {Cache as CacheConfig} from "../config/Cache";
 
 export class ContentService {
   private readonly supportLanguages = ["en", "ko"];
@@ -9,6 +11,7 @@ export class ContentService {
     this.documentRepository = documentRepository;
   }
 
+  @Cache(CacheConfig.redisContainer, { ttl: 3600 })
   public async getHomeContents(lang: string): Promise<EventInfo> {
     if (!this.isSupportLanguage(lang)) {
       lang = "en";

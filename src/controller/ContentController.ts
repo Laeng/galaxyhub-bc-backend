@@ -15,7 +15,6 @@ export class ContentController extends BaseController {
   }
 
   @Get("/v1/contents/home")
-  @Cache(CacheConfig.redisContainer, { ttl: 3600 })
   async getSponsorAll(@QueryParam("lang", { required: true }) lang: string): Promise<HttpResponse> {
     try {
       const data = await this.contentService.getHomeContents(lang);
