@@ -64,7 +64,8 @@ export interface InfoData {
 export interface infoButton {
   name: string,
   class: string,
-  url: ""
+  target: string,
+  url: string
 }
 
 export interface Faq {
