@@ -63,6 +63,7 @@ export interface InfoData {
 
 export interface infoButton {
   name: string,
+  class: string,
   url: ""
 }
 

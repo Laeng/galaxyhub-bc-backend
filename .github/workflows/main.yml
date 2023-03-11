@@ -45,8 +45,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           timeout: "2m"
-          script: |
-            # sh ~/deploy/galaxyhub-bc-after.sh
-            cd ~/www/api.barcitizen.kr
-            npm install
-            pm2 start npm --name "galaxyhub-bc" -- run start
+          script: sh ~/deploy/galaxyhub-bc-after.sh
+
