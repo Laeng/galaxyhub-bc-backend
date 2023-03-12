@@ -44,6 +44,5 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
-          timeout: "2m"
           script: sh ~/deploy/galaxyhub-bc-after.sh
 
