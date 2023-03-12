@@ -7,7 +7,7 @@ config({ path: ".env" });
 
 const app = new Cyan({
   name: "galaxyhub-bc",
-  port: parseInt(process.env.PORT || "3000", 10),
+  port: parseInt(process.env.APP_PORT || "3000", 10),
   server: AppServer,
   routes: [ContentController],
   tasks: [],
