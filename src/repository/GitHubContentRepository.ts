@@ -29,6 +29,12 @@ export class GitHubContentRepository {
     return ConvertBase64.toJson<Faq>(response.content);
   }
 
+  public async getLocation(): Promise<Location> {
+    const response = await this.getGithubContent("/public/location.json");
+
+    return ConvertBase64.toJson<Location>(response.content);
+  }
+
   private async getGithubContent(path: string): Promise<GitHubContentResponse> {
     return await this.documentApi.getContent({
       owner: this.githubOwner,
@@ -58,10 +64,10 @@ export interface InfoData {
   place: string,
   price: string,
   inform: string[],
-  button: infoButton[]
+  button: linkButton[]
 }
 
-export interface infoButton {
+export interface linkButton {
   name: string,
   class: string,
   target: string,
@@ -76,4 +82,21 @@ export interface Faq {
 export interface FaqData {
   question: string,
   answer: string
+}
+
+export interface Location {
+  en: LocationData,
+  ko: LocationData
+}
+
+export interface LocationData {
+  name: string,
+  location: String,
+  location_ko: string,
+  coordinate: {
+    latitude: number,
+    longitude: number
+  },
+  images: string[],
+  button: linkButton[]
 }

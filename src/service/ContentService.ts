@@ -1,5 +1,11 @@
 import { Inject } from "@coralblack/cyan/dist/core";
-import { FaqData, GitHubContentRepository, InfoData, Sponsors } from "../repository/GitHubContentRepository";
+import {
+  FaqData,
+  GitHubContentRepository,
+  InfoData,
+  LocationData,
+  Sponsors
+} from "../repository/GitHubContentRepository";
 import {Cache} from "node-ts-cache";
 import {Cache as CacheConfig} from "../config/Cache";
 
@@ -11,7 +17,7 @@ export class ContentService {
     this.documentRepository = documentRepository;
   }
 
-  @Cache(CacheConfig.redisContainer, { ttl: 3600 })
+  @Cache(CacheConfig.redisContainer, { ttl: 150 })
   public async getHomeContents(lang: string): Promise<EventInfo> {
     if (!this.isSupportLanguage(lang)) {
       lang = "en";
@@ -19,6 +25,7 @@ export class ContentService {
 
     const info = await this.documentRepository.getInfo();
     const faq = await this.documentRepository.getFaq();
+    const location = await this.documentRepository.getLocation();
 
     const years: number[] = [2023, 2022];
     const sponsors: Sponsors[] = [];
@@ -31,6 +38,7 @@ export class ContentService {
     return {
       info: info[lang],
       faq: faq[lang],
+      location: location[lang],
       sponsor: sponsors
     };
   }
@@ -43,5 +51,6 @@ export class ContentService {
 export interface EventInfo {
   info: InfoData,
   faq: FaqData,
+  location: LocationData,
   sponsor: Sponsors[]
 }
