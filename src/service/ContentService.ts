@@ -27,7 +27,7 @@ export class ContentService {
     const faq = await this.documentRepository.getFaq();
     const location = await this.documentRepository.getLocation();
 
-    const years: number[] = [2023, 2022];
+    const years: number[] = [2024, 2023, 2022];
     const sponsors: Sponsors[] = [];
 
     for (const year of years) {
